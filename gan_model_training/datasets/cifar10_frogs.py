@@ -1,9 +1,9 @@
 import tensorflow
 
 def get_frogs(height, width, channels):
-    (x_train, y_train), (_, _) = tensorflow.keras.datasets.cifar10.load_data()  # Ładowanie zbioru CIFAR10
+    (x_train, y_train), (_, _) = tensorflow.keras.datasets.cifar10.load_data()
 
-    x_train = x_train[y_train.flatten() == 6]  # Wybór obrazów żab (klasa numer 6)
+    x_train = x_train[y_train.flatten() == 6]
 
     x_train = x_train.reshape(
         (x_train.shape[0],) +

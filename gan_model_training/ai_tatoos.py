@@ -1,5 +1,12 @@
 import tensorflow
 
+from networks.generator import create_generator
+from networks.discriminator import create_discriminator
+from networks.gan import create_gan
+from networks.train_networks import train_networks
+from datasets.cifar10_frogs import get_frogs
+
+
 print(tensorflow.__version__)
 # First fings first, lets check if we will be using GPU
 if tensorflow.test.gpu_device_name(): 
@@ -24,13 +31,6 @@ start = 0
 # -----------------------
 # --- CREATE NETWORKS ---
 # -----------------------
-
-from networks.generator import create_generator
-from networks.discriminator import create_discriminator
-from networks.gan import create_gan
-from networks.train_networks import train_networks
-from datasets.frogs import get_frogs
-
 
 generator = create_generator(latent_dim, channels)
 discriminator = create_discriminator(height, width, channels)
