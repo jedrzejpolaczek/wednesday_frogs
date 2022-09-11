@@ -25,7 +25,7 @@ channels = 3
 
 iterations = 10000
 batch_size = 20
-save_dir = "gan_images"
+save_dir = "gan_model_training\gan_images"
 start = 0
 
 # -----------------------
