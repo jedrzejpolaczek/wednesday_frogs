@@ -10,7 +10,7 @@ from email import encoders
 
 
 def send_email() -> None:
-
+    """ Send email with image. """
     emails_data = get_email_data()
     
     user_name = emails_data["user_name"]
@@ -70,7 +70,7 @@ def send_email() -> None:
     for riciever in riecievers:
         logger.info("Storing the receivers email address.") 
         msg['To'] = riciever
-        
+
         logger.info("Sending the mail to %s" % riciever)
         smtp_session.sendmail(sender, riciever, text)
         
@@ -79,11 +79,21 @@ def send_email() -> None:
 
 
 def is_it_wednesday() -> Boolean:
+    """ 
+    Check if it is Wednesday.
+    
+    return boolean: True if it is, false if not.
+    """
     # If today is Wednesday (0 = Mon, 1 = Tue, 2 = Wen ...)
     return True if datetime.today().weekday() == 2 else False
 
 
 def get_email_data() -> dict:
+    """ 
+    Read JSON dict from file.
+    
+    return dict: dict based on read JSON file.
+    """
     logger.info("Opening JSON file.")
     json_file = open('config.json')
     
@@ -94,6 +104,7 @@ def get_email_data() -> dict:
 
 
 def send_email_on_wednesday() -> None:
+    """ Send email with generated image on each Wednesday. """
     if is_it_wednesday:
         logger.info("It is Wednesday!")
         logger.info("Loading model.")
