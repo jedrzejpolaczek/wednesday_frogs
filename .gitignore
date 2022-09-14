@@ -351,3 +351,4 @@ MigrationBackup/
 
 # Model build
 gan_model_training/gan_images/*
+config.json
