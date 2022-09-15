@@ -34,7 +34,7 @@ def train_networks(latent_dim, generator, discriminator, gan, x_train, y_train, 
             start = 0
 
         if step % 100 == 0:
-            gan.save_weights('gan.h5')
+            gan.save_weights('gan_model\gan.h5')
 
             logger.info('Discriminator lossin step %s: %s' % (step, d_loss))
             logger.info('Generator loss in step %s: %s' % (step, a_loss))

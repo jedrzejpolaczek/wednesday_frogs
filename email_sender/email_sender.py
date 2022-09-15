@@ -2,11 +2,14 @@ from datetime import datetime
 import json
 from xmlrpc.client import Boolean
 from loguru import logger
+import tensorflow
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
+import numpy as np
+import os
 
 
 def send_email() -> None:
@@ -103,15 +106,27 @@ def get_email_data() -> dict:
     return email_data
 
 
+def generate_and_save_image(gan: tensorflow.Model) -> None:
+    """
+    Generating and saving on disk generated image.
+    
+    gan (tensorflow.Model): GAN model.
+    """
+    random_latent_vectors = np.random.normal(size=(20, 32))
+    generated_images = gan.predict(random_latent_vectors)
+    img = tensorflow.keras.utils.array_to_img(generated_images[0] * 255., scale=False)
+    img.save(os.path.join("", 'generated_frog.png'))
+
+
 def send_email_on_wednesday() -> None:
     """ Send email with generated image on each Wednesday. """
     if is_it_wednesday:
         logger.info("It is Wednesday!")
         logger.info("Loading model.")
-        # TODO: load model
+        gan = tensorflow.keras.models.load_model('gan_model\gan.h5')
 
         logger.info("Generating new frog.")
-        # TODO: generate image
+        generate_and_save_image(gan)  # TODO: these should be to seperate functions.
 
         logger.info("Beginning procedure of sending emails.")
         send_email()
