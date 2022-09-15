@@ -92,14 +92,26 @@ def is_it_wednesday() -> Boolean:
     return True if datetime.today().weekday() == 2 else False
 
 
-def generate_and_save_image(gan: tensorflow.Model) -> None:
+def generate__images(gan: tensorflow.Model) -> list:
     """
-    Generating and saving on disk generated image.
+    Generating image.
     
     gan (tensorflow.Model): GAN model.
+
+    return (list): list of generated images.
     """
     random_latent_vectors = np.random.normal(size=(20, 32))
     generated_images = gan.predict(random_latent_vectors)
+
+    return generated_images
+
+
+def save_image(generated_images) -> None:
+    """ 
+    Save image on hard drive.
+    
+    generated_images (list): list of generated images.
+    """
     img = tensorflow.keras.utils.array_to_img(generated_images[0] * 255., scale=False)
     img.save(os.path.join("", 'generated_frog.png'))
 
@@ -112,7 +124,10 @@ def send_email_on_wednesday() -> None:
         gan = tensorflow.keras.models.load_model('gan_model\gan.h5')
 
         logger.info("Generating new frog.")
-        generate_and_save_image(gan)  # TODO: these should be to seperate functions.
+        frog_images = generate__images(gan)
+
+        logger.info("Saving frog image on hard drive.")
+        save_image(frog_images)
 
         logger.info("Beginning procedure of sending emails.")
         send_email()
