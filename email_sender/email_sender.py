@@ -11,7 +11,7 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 
-from utils.configuration import get_json_data
+from .utils.configuration import get_json_data
 
 
 def send_email() -> None:

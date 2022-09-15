@@ -12,6 +12,6 @@ def get_json_data() -> dict:
     json_file = open('config.json')
     
     logger.info("Returns JSON object as a dictionary.")
-    email_data = json.load(json_file)
+    data = json.load(json_file)
 
-    return email_data
+    return data
