@@ -32,7 +32,7 @@ def create_generator(latent_dim, height, width, channels):
     x = layers.BatchNormalization()(x)
 
     # OUTPUT LAYER
-    x = layers.Conv2DTranspose(channels, 7, activation='tanh', padding='same')(x)
+    x = layers.Conv2DTranspose(channels, 7, activation='tanh', padding='same')(x)  # Fixme: magic number
 
     # GENERATOR MODEL DECLARATION
     generator = keras.models.Model(generator_input, x)

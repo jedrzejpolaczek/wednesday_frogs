@@ -1,14 +1,15 @@
+import os
+import numpy as np
+import tensorflow
+import smtplib
+
 from datetime import datetime
 from xmlrpc.client import Boolean
 from loguru import logger
-import tensorflow
-import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
-import numpy as np
-import os
 
 from utils.configuration import get_json_data
 
@@ -60,7 +61,7 @@ def send_email() -> None:
     msg.attach(payload)
         
     logger.info("Creates SMTP session.")
-    smtp_session = smtplib.SMTP('smtp.gmail.com', 587)
+    smtp_session = smtplib.SMTP('smtp.gmail.com', 587)  # Fixme: magic number
         
     logger.info("Start TLS for security.")
     smtp_session.starttls()
@@ -100,7 +101,7 @@ def generate__images(gan: tensorflow.Model) -> list:
 
     return (list): list of generated images.
     """
-    random_latent_vectors = np.random.normal(size=(20, 32))
+    random_latent_vectors = np.random.normal(size=(20, 32))  # Fixme: magic number
     generated_images = gan.predict(random_latent_vectors)
 
     return generated_images
@@ -112,7 +113,7 @@ def save_image(generated_images) -> None:
     
     generated_images (list): list of generated images.
     """
-    img = tensorflow.keras.utils.array_to_img(generated_images[0] * 255., scale=False)
+    img = tensorflow.keras.utils.array_to_img(generated_images[0] * 255., scale=False)  # Fixme: magic number
     img.save(os.path.join("", 'generated_frog.png'))
 
 
@@ -131,6 +132,7 @@ def send_email_on_wednesday() -> None:
 
         logger.info("Beginning procedure of sending emails.")
         send_email()
+
     else:
         logger.info("It is not Wednesday.")
         logger.info(" :( ")
