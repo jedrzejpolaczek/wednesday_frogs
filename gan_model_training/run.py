@@ -5,6 +5,7 @@ from networks.discriminator import create_discriminator
 from networks.gan import create_gan
 from networks.train_networks import train_networks
 from datasets.cifar10_frogs import get_frogs
+from utils.configuration import get_json_data
 
 
 print(tensorflow.__version__)
@@ -18,15 +19,17 @@ else:
 # ------ VARIABLES ------
 # -----------------------
 
-latent_dim = 32
-height = 32
-width = 32
-channels = 3
+training_data = get_json_data('training_config.json')
 
-iterations = 10000
-batch_size = 20
-save_dir = "gan_model_training\gan_images"
-start = 0
+latent_dim = training_data["latent_dim"]
+height = training_data["height"]
+width = training_data["width"]
+channels = training_data["channels"]
+
+iterations = training_data["iterations"]
+batch_size = training_data["batch_size"]
+save_dir = training_data["save_dir"]
+start = training_data["start"]
 
 # -----------------------
 # --- CREATE NETWORKS ---

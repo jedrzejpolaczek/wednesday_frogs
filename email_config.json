@@ -1,0 +1,14 @@
+{
+    "user_name" : "jedrzej.polaczek@gmail.com", 
+    "user_password" : "qapervwfilcskall", 
+    "sender" : "jedrzej.polaczek@mail.com", 
+    "riecievers" : [
+        "elzeijp@gmail.com",
+        "Dmruk@outlook.com",
+        "njs.izzy@gmail.com"
+    ], 
+    "img_file_name" : "wednesday_frog.png",
+    "img_file_name_path" : "wednesday_frog.png",
+    "subject" : "It\\'s Wednesday my dude!",
+    "body" : "It is Wednesday, my dude! Here's your complementatory frog from a depth of AI mind."
+}

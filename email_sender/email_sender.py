@@ -1,5 +1,4 @@
 from datetime import datetime
-import json
 from xmlrpc.client import Boolean
 from loguru import logger
 import tensorflow
@@ -11,10 +10,12 @@ from email import encoders
 import numpy as np
 import os
 
+from utils.configuration import get_json_data
+
 
 def send_email() -> None:
     """ Send email with image. """
-    emails_data = get_email_data()
+    emails_data = get_json_data('email_config.json')
     
     user_name = emails_data["user_name"]
     user_password = emails_data["user_password"]
@@ -89,21 +90,6 @@ def is_it_wednesday() -> Boolean:
     """
     # If today is Wednesday (0 = Mon, 1 = Tue, 2 = Wen ...)
     return True if datetime.today().weekday() == 2 else False
-
-
-def get_email_data() -> dict:
-    """ 
-    Read JSON dict from file.
-    
-    return dict: dict based on read JSON file.
-    """
-    logger.info("Opening JSON file.")
-    json_file = open('config.json')
-    
-    logger.info("Returns JSON object as a dictionary.")
-    email_data = json.load(json_file)
-
-    return email_data
 
 
 def generate_and_save_image(gan: tensorflow.Model) -> None:
