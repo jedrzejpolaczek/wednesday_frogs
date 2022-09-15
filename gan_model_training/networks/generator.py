@@ -16,15 +16,12 @@ def create_generator(latent_dim, height, width, channels):
     x = layers.LeakyReLU()(x)
 
     x = layers.Reshape((height, width, channels))(x)
-    # assert x.shape == (None, 224, 224, 32)  # Note: None is the batch size
 
     x = layers.Conv2DTranspose(256, 5, padding='same')(x)
-    # TODO: add assert x.output_shape == (None, 224, 224, 32)
     x = layers.BatchNormalization()(x)
     X = layers.LeakyReLU()(x)
 
     x = layers.Conv2D(124, 4, strides=(1, 1), padding='same', use_bias=False)(x)
-    # TODO: add assert x.output_shape == (None, 224, 224, 32)
     x = layers.BatchNormalization()(x)
     x = layers.LeakyReLU()(x)
 
@@ -32,12 +29,10 @@ def create_generator(latent_dim, height, width, channels):
     x = layers.LeakyReLU()(x)
     x = layers.Conv2DTranspose(32, 5, strides=(1, 1), padding='same', use_bias=False)(x)
     x = layers.LeakyReLU()(x)
-    # TODO: add assert x.output_shape == (None, 224, 224, 32)
     x = layers.BatchNormalization()(x)
 
     # OUTPUT LAYER
     x = layers.Conv2DTranspose(channels, 7, activation='tanh', padding='same')(x)
-    # TODO: add assert x.output_shape == (None, 224, 224, 32)
 
     # GENERATOR MODEL DECLARATION
     generator = keras.models.Model(generator_input, x)
@@ -47,6 +42,7 @@ def create_generator(latent_dim, height, width, channels):
     # GENERATOR MODEL COMPILATION
     # N/A
 
+    generator.output_shape == (None, height, width, channels)
     logger.info(generator.summary())
 
     return generator
