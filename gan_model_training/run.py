@@ -6,7 +6,7 @@ from networks.discriminator import create_discriminator
 from networks.gan import create_gan
 from networks.train_networks import train_networks
 from datasets.cifar10_frogs import get_frogs
-from utils.configuration import get_json_data
+# TODO: fixme from utils.configuration import get_json_data
 
 
 print(tensorflow.__version__)
@@ -18,7 +18,14 @@ else:
 
 # -----------------------
 logger.info("LOADING VARIABLES")
-training_data = get_json_data('training_config.json')
+# TODO: fixme training_data = get_json_data('training_config.json')
+
+logger.info("Opening JSON file.")
+json_file = open('training_config.json')
+
+import json    
+logger.info("Returns JSON object as a dictionary.")
+training_data = json.load(json_file)
 
 latent_dim = training_data["latent_dim"]
 height = training_data["height"]

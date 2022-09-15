@@ -46,5 +46,8 @@ def train_networks(latent_dim, generator, discriminator, gan, x_train, y_train, 
             img = tensorflow.keras.utils.array_to_img(real_images[0] * 255., scale=False)
             img.save(os.path.join(save_dir, 'real_frog_' + str(step) + '.png'))
         
-        now = datetime.now()
-        logger.info(now.strftime("%H:%M:%S") + " : step: " + str(step))
+            now = datetime.now()
+            logger.info(
+                now.strftime("%H:%M:%S") + " : step " + 
+                str(step) + " out of " + str(iterations) + " steps (" + str((step*100)/iterations) + "%)"
+            )
