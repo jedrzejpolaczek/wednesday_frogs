@@ -7,6 +7,7 @@ from loguru import logger
 # ---------------------
 
 def create_discriminator(height, width, channels):
+    """ Simple CNN image classifier."""
     # INPUT LAYER
     discriminator_input = layers.Input(shape=(height, width, channels))
 
@@ -14,13 +15,13 @@ def create_discriminator(height, width, channels):
     x = layers.Conv2D(128, 3)(discriminator_input)
     x = layers.LeakyReLU()(x)
 
-    x = layers.Conv2D(128, 4, strides=(2, 2), padding='same')(x)
+    x = layers.Conv2D(64, 4, strides=(2, 2), padding='same')(x)
     x = layers.LeakyReLU()(x)
 
-    x = layers.Conv2D(128, 4, strides=(2, 2), padding='same')(x)
+    x = layers.Conv2D(32, 4, strides=(2, 2), padding='same')(x)
     x = layers.LeakyReLU()(x)
 
-    x = layers.Conv2D(128, 4, strides=(2, 2), padding='same')(x)
+    x = layers.Conv2D(16, 4, strides=(2, 2), padding='same')(x)
     x = layers.LeakyReLU()(x)
 
     x = layers.Dropout(0.4)(x)

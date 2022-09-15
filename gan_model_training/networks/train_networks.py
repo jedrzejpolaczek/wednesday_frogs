@@ -21,13 +21,14 @@ def train_networks(latent_dim, generator, discriminator, gan, x_train, y_train, 
         
         labels += 0.55 * np.random.random(labels.shape)
 
-        d_loss = discriminator.train_on_batch(combined_images, labels)
+        # Note: train_on_batch is a simple gradient loss
+        discriminator_loss = discriminator.train_on_batch(combined_images, labels)
 
         random_latent_vectors = np.random.normal(size=(batch_size, latent_dim)) 
 
         misleading_targets = np.zeros((batch_size, 1))
 
-        a_loss = gan.train_on_batch(random_latent_vectors, misleading_targets)
+        generator_loss = gan.train_on_batch(random_latent_vectors, misleading_targets)
 
         start += batch_size
         if start > len(x_train) - batch_size:
@@ -36,8 +37,8 @@ def train_networks(latent_dim, generator, discriminator, gan, x_train, y_train, 
         if step % 100 == 0:
             gan.save_weights('gan_model\gan.h5')
 
-            logger.info('Discriminator lossin step %s: %s' % (step, d_loss))
-            logger.info('Generator loss in step %s: %s' % (step, a_loss))
+            logger.info('Discriminator lossin step %s: %s' % (step, discriminator_loss))
+            logger.info('Generator loss in step %s: %s' % (step, generator_loss))
             
             img = tensorflow.keras.utils.array_to_img(generated_images[0] * 255., scale=False)
             img.save(os.path.join(save_dir, 'generated_frog_' + str(step) + '.png'))
