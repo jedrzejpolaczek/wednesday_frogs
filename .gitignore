@@ -353,6 +353,6 @@ MigrationBackup/
 gan_model_training/gan_images/*
 frog-dataset/*
 frog-dataset
-config.json
+email_config.json
 gan.h5
 test.py
