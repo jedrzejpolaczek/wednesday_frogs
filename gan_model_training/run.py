@@ -1,4 +1,5 @@
 import tensorflow
+from loguru import logger
 
 from networks.generator import create_generator
 from networks.discriminator import create_discriminator
@@ -16,9 +17,7 @@ else:
    print("Please install GPU version of tensorflow!")
 
 # -----------------------
-# ------ VARIABLES ------
-# -----------------------
-
+logger.info("LOADING VARIABLES")
 training_data = get_json_data('training_config.json')
 
 latent_dim = training_data["latent_dim"]
@@ -32,21 +31,18 @@ save_dir = training_data["save_dir"]
 start = training_data["start"]
 
 # -----------------------
-# --- CREATE NETWORKS ---
-# -----------------------
+logger.info("CREATING NETWORKS")
 
 generator = create_generator(latent_dim, height, width, channels)
 discriminator = create_discriminator(height, width, channels)
 gan = create_gan(discriminator, generator, latent_dim)
 
 # -----------------------
-# ---- DOWNLOAD DATA ----
-# -----------------------
+logger.info("DOWNLOADING DATA")
 
 x_train, y_train = get_frogs(height, width, channels)
 
 # -----------------------
-# ---- TRAIN NETWORK ----
-# -----------------------
+logger.info("TRAINING NETWORK")
 
 train_networks(latent_dim, generator, discriminator, gan, x_train, y_train, iterations, batch_size, save_dir, start)
