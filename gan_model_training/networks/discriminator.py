@@ -1,5 +1,6 @@
 import keras
 from keras import layers
+from loguru import logger
 
 # ---------------------
 # --- DISCRIMINATOR ---
@@ -12,16 +13,18 @@ def create_discriminator(height, width, channels):
     # HIDDEN LAYERS
     x = layers.Conv2D(128, 3)(discriminator_input)
     x = layers.LeakyReLU()(x)
-    x = layers.Conv2D(128, 4, strides=2)(x)
-    x = layers.LeakyReLU()(x)
-    x = layers.Conv2D(128, 4, strides=2)(x)
-    x = layers.LeakyReLU()(x)
-    x = layers.Conv2D(128, 4, strides=2)(x)
+
+    x = layers.Conv2D(128, 4, strides=(2, 2), padding='same')(x)
     x = layers.LeakyReLU()(x)
 
-    x = layers.Flatten()(x)
+    x = layers.Conv2D(128, 4, strides=(2, 2), padding='same')(x)
+    x = layers.LeakyReLU()(x)
+
+    x = layers.Conv2D(128, 4, strides=(2, 2), padding='same')(x)
+    x = layers.LeakyReLU()(x)
 
     x = layers.Dropout(0.4)(x)
+    x = layers.Flatten()(x)
 
     # OUTPUT LAYER
     x = layers.Dense(1, activation='sigmoid')(x)
@@ -41,5 +44,7 @@ def create_discriminator(height, width, channels):
         optimizer=discriminator_optimizer,
         loss='binary_crossentropy'
     )
+
+    logger.info(discriminator.summary())
 
     return discriminator

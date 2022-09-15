@@ -351,4 +351,8 @@ MigrationBackup/
 
 # Model build
 gan_model_training/gan_images/*
+frog-dataset/*
+frog-dataset
 config.json
+gan.h5
+test.py

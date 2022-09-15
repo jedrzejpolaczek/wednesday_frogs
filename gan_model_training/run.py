@@ -32,7 +32,7 @@ start = 0
 # --- CREATE NETWORKS ---
 # -----------------------
 
-generator = create_generator(latent_dim, channels)
+generator = create_generator(latent_dim, height, width, channels)
 discriminator = create_discriminator(height, width, channels)
 gan = create_gan(discriminator, generator, latent_dim)
 

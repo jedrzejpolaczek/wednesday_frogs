@@ -2,6 +2,8 @@ import numpy as np
 import tensorflow
 import os
 from datetime import datetime
+from loguru import logger
+
 
 def train_networks(latent_dim, generator, discriminator, gan, x_train, y_train, iterations, batch_size, save_dir, start):
     for step in range(iterations):
@@ -34,9 +36,8 @@ def train_networks(latent_dim, generator, discriminator, gan, x_train, y_train, 
         if step % 100 == 0:
             gan.save_weights('gan.h5')
 
-            print(step)
-            print('Discriminator lossin step %s: %s' % (step, d_loss))
-            print('Generator loss in step %s: %s' % (step, a_loss))
+            logger.info('Discriminator lossin step %s: %s' % (step, d_loss))
+            logger.info('Generator loss in step %s: %s' % (step, a_loss))
             
             img = tensorflow.keras.utils.array_to_img(generated_images[0] * 255., scale=False)
             img.save(os.path.join(save_dir, 'generated_frog_' + str(step) + '.png'))
@@ -45,4 +46,4 @@ def train_networks(latent_dim, generator, discriminator, gan, x_train, y_train, 
             img.save(os.path.join(save_dir, 'real_frog_' + str(step) + '.png'))
         
         now = datetime.now()
-        print(now.strftime("%H:%M:%S") + " : step: " + str(step))
+        logger.info(now.strftime("%H:%M:%S") + " : step: " + str(step))

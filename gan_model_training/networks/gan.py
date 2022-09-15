@@ -1,5 +1,5 @@
 import keras
-from keras import layers
+from loguru import logger
 
 # -----------
 # --- GAN ---
@@ -32,5 +32,7 @@ def create_gan(discriminator, generator, latent_dim):
         optimizer=gan_optimizer,
         loss='binary_crossentropy'
     )
+
+    logger.info(discriminator.summary())
 
     return gan
