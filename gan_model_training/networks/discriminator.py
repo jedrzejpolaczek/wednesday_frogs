@@ -35,12 +35,8 @@ def create_discriminator(height, width, channels):
     discriminator = keras.models.Model(discriminator_input, x)
 
     # DISCRIMINATOR MODEL OPTIMIZATION
-    discriminator_optimizer = keras.optimizers.RMSprop(
-        lr=0.0008,
-        clipvalue=1.0,
-        decay=1e-8
-    )
-
+    discriminator_optimizer = tensorflow.keras.optimizers.Adam(1e-4)
+    
     # DISCRIMINATOR MODEL COMPILATION
     discriminator.compile(
         optimizer=discriminator_optimizer,

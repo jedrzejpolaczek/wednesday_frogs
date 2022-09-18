@@ -47,7 +47,8 @@ def create_generator(latent_dim, height, width, channels):
     generator = keras.models.Model(generator_input, x)
     
     # GENERATOR MODEL OPTIMIZATION
-    # N/A
+    generator_optimizer = tensorflow.keras.optimizers.Adam(1e-4)
+
     # GENERATOR MODEL COMPILATION
     # N/A
 
