@@ -5,7 +5,7 @@ from datetime import datetime
 from loguru import logger
 
 
-def train_networks(latent_dim, generator, discriminator, gan, x_train, y_train, iterations, batch_size, save_dir, start):
+def train_networks(latent_dim, generator, discriminator, gan, x_train, iterations, batch_size, save_dir, start):
     for step in range(iterations):
         random_latent_vectors = np.random.normal(size=(batch_size, latent_dim))
 
@@ -46,6 +46,7 @@ def train_networks(latent_dim, generator, discriminator, gan, x_train, y_train, 
             img = tensorflow.keras.utils.array_to_img(real_images[0] * 255., scale=False)
             img.save(os.path.join(save_dir, 'real_frog_' + str(step) + '.png'))
         
+        if step % 10 == 0:
             now = datetime.now()
             logger.info(
                 now.strftime("%H:%M:%S") + " : step " + 

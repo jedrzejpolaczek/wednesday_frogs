@@ -4,10 +4,11 @@ Fun project for getting new, unique frog every Wednesday my dudes!
 Warning: Basic idea for these model is based on implementation of :
 1. GAN presented in `Deep Learning with Python` by `Francois Chollet`.
 2. Tensorflow GAN example implementation.
-3. ... and a lot more.
+3. RealPython (https://realpython.com/how-to-make-a-discord-bot-python/)
+4. ... and a lot more.
 
 # Main concept (WIP)
-1. Frog database: https://github.com/jonshamir/frog-dataset (WIP)
+1. Frog database is CIFAR10 or https://github.com/jonshamir/frog-dataset
 2. Create and train generative adversarial networks (GAN) for generating frog images.
 3. "Server" that will run script for generating and sending frog image each Wednesday.
 4. Run discord bot that will run script for generating and post frog image each Wednesday. (WIP)

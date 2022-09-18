@@ -47,9 +47,9 @@ gan = create_gan(discriminator, generator, latent_dim)
 # -----------------------
 logger.info("DOWNLOADING DATA")
 
-x_train, y_train = get_frogs(height, width, channels)
+x_train, _ = get_frogs(height, width, channels)
 
 # -----------------------
 logger.info("TRAINING NETWORK")
 
-train_networks(latent_dim, generator, discriminator, gan, x_train, y_train, iterations, batch_size, save_dir, start)
+train_networks(latent_dim, generator, discriminator, gan, x_train, iterations, batch_size, save_dir, start)

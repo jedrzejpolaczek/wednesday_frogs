@@ -11,7 +11,7 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 
-from .utils.configuration import get_json_data
+from utils.configuration import get_json_data
 
 
 def send_email() -> None:
@@ -90,14 +90,16 @@ def is_it_wednesday() -> Boolean:
     return boolean: True if it is, false if not.
     """
     # If today is Wednesday (0 = Mon, 1 = Tue, 2 = Wen ...)
-    return True if datetime.today().weekday() == 2 else False
+    is_it_wednesday = datetime.today().weekday() == 2
+    logger.debug("Is it Wednesdat? : " + str(is_it_wednesday))
+    return is_it_wednesday
 
 
-def generate__images(gan: tensorflow.Model) -> list:
+def generate_images(gan: tensorflow.keras.models.Model) -> list:
     """
     Generating image.
     
-    gan (tensorflow.Model): GAN model.
+    gan (tensorflow.keras.models.Model): GAN model.
 
     return (list): list of generated images.
     """
@@ -107,7 +109,7 @@ def generate__images(gan: tensorflow.Model) -> list:
     return generated_images
 
 
-def save_image(generated_images) -> None:
+def save_image(generated_images: list) -> None:
     """ 
     Save image on hard drive.
     
@@ -117,15 +119,20 @@ def save_image(generated_images) -> None:
     img.save(os.path.join("", 'generated_frog.png'))
 
 
-def send_email_on_wednesday() -> None:
-    """ Send email with generated image on each Wednesday. """
-    if is_it_wednesday:
+def send_email_on_wednesday(model_dir_path: str='gan_model\\gan.h5') -> None:
+    """ 
+    Send email with generated image on each Wednesday. 
+    
+    model_dir_path (str): path to saved GAN model.
+    """
+    if not is_it_wednesday():
         logger.info("It is Wednesday!")
         logger.info("Loading model.")
-        gan = tensorflow.keras.models.load_model('gan_model\gan.h5')
+        # I am keeping the loading of the model here due to potential model update reasons
+        gan = tensorflow.keras.models.load_model(model_dir_path)
 
         logger.info("Generating new frog.")
-        frog_images = generate__images(gan)
+        frog_images = generate_images(gan)
 
         logger.info("Saving frog image on hard drive.")
         save_image(frog_images)
