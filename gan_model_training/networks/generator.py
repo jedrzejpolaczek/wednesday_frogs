@@ -1,6 +1,7 @@
 import keras
 from keras import layers
 from loguru import logger
+import tensorflow
 
 # -----------------
 # --- GENERATOR ---
@@ -54,3 +55,8 @@ def create_generator(latent_dim, height, width, channels):
     logger.info(generator.summary())
 
     return generator
+
+def generator_loss(fake_output):
+    cross_entropy = tensorflow.keras.losses.BinaryCrossentropy(from_logits=True)
+
+    return cross_entropy(tensorflow.ones_like(fake_output), fake_output)
