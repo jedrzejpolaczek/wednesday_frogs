@@ -35,13 +35,10 @@ def create_discriminator(height, width, channels):
     discriminator = keras.models.Model(discriminator_input, x)
 
     # DISCRIMINATOR MODEL OPTIMIZATION
-    discriminator_optimizer = tensorflow.keras.optimizers.Adam(1e-4)
+    # In function discriminator_optimizer
     
     # DISCRIMINATOR MODEL COMPILATION
-    discriminator.compile(
-        optimizer=discriminator_optimizer,
-        loss='binary_crossentropy'
-    )
+    # N/A
 
     logger.info(discriminator.summary())
 
@@ -56,3 +53,6 @@ def discriminator_loss(real_output, fake_output):
     total_loss = real_loss + fake_loss
 
     return total_loss
+
+def discriminator_optimizer():
+    return tensorflow.keras.optimizers.Adam(1e-4)

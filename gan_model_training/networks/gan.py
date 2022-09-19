@@ -5,11 +5,11 @@ from loguru import logger
 # --- GAN ---
 # -----------
 
-def create_gan(discriminator, generator, latent_dim):
+def create_gan(discriminator, generator, noise_dim):
     discriminator.trainable = False
 
     # INPUT LAYER
-    gan_input = keras.Input(shape=(latent_dim,))
+    gan_input = keras.Input(shape=(noise_dim,))
 
     # HIDDEN LAYERS
     pass

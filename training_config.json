@@ -4,7 +4,7 @@
     "width" : 32,
     "channels" : 3,
     "iterations" : 100000,
-    "batch_size" : 20,
+    "batch_size" : 256,
     "save_dir" : "gan_model_training\\gan_images",
     "start" : 0
 }
