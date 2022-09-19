@@ -1,5 +1,6 @@
 import tensorflow
 from loguru import logger
+import sys
 
 from networks.generator import (create_generator, generator_loss, generator_optimizer)
 from networks.discriminator import (create_discriminator, discriminator_loss, discriminator_optimizer)
@@ -8,6 +9,8 @@ from networks.train_networks import train
 from datasets.cifar10_frogs import get_frogs
 # TODO: fixme from utils.configuration import get_json_data
 
+logger.remove()
+logger.add(sys.stderr, level="INFO")
 
 print(tensorflow.__version__)
 # First fings first, lets check if we will be using GPU
@@ -26,6 +29,7 @@ json_file = open('training_config.json')
 import json    
 logger.info("Returns JSON object as a dictionary.")
 training_data = json.load(json_file)
+#TODO: UP-------------------------------------
 
 noise_dim = training_data["latent_dim"]
 height = training_data["height"]
@@ -33,7 +37,7 @@ width = training_data["width"]
 channels = training_data["channels"]
 
 epochs = training_data["iterations"]
-buffer_size = 200  # TODO: move it to JSON
+buffer_size = 10  # TODO: move it to JSON
 batch_size = training_data["batch_size"]
 save_dir = training_data["save_dir"]
 # start = training_data["start"]
@@ -41,25 +45,28 @@ num_examples_to_generate = 16
 seed=tensorflow.random.normal([num_examples_to_generate, noise_dim])
 
 # -----------------------
-logger.info("CREATING NETWORKS")
-
+logger.info("GENERATOR DEFINITION")
 generator = create_generator(noise_dim, height, width, channels)
 gen_optimizer = generator_optimizer()
 
+logger.info("DISCRIMINATOR DEFINITION")
 discriminator = create_discriminator(height, width, channels)
 disc_optimizer = discriminator_optimizer()
 
-gan = create_gan(discriminator, generator, noise_dim)
+logger.debug(f"Generator output shape: {generator.output_shape}")
+# my_val = discriminator.layers[0].get_output_at(0).get_shape().as_list()
+# logger.debug(f"Discriminator input shape: {my_val}")
+
+# logger.info("GAN DEFINITION")
+# gan = create_gan(discriminator, generator, noise_dim)
 
 # -----------------------
-logger.info("DOWNLOADING DATA")
-
+logger.info("PREPARING DATASET")
 x_train, _ = get_frogs(height, width, channels)
 train_dataset = tensorflow.data.Dataset.from_tensor_slices(x_train).shuffle(buffer_size).batch(batch_size)
 
 # -----------------------
 logger.info("CREATING CHECKPOINT")
-
 checkpoint = tensorflow.train.Checkpoint(
     generator_optimizer=gen_optimizer,
     discriminator_optimizer=disc_optimizer,
@@ -68,7 +75,7 @@ checkpoint = tensorflow.train.Checkpoint(
 )
 
 # -----------------------
-logger.info("TRAINING NETWORK")
+logger.info("TRAINING NETWORKS")
 
 train(
     train_dataset, 

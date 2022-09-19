@@ -7,45 +7,54 @@ import tensorflow
 # --- DISCRIMINATOR ---
 # ---------------------
 
-def create_discriminator(height, width, channels):
-    """ Simple CNN image classifier."""
+def create_discriminator(height: int, width: int, channels: int):
+    """ 
+    Simple CNN image classifier.
+    
+    height (int): TODO add description
+    width (int): TODO add description
+    channels (int): TODO add description
+    """
+    # DISCRIMINATOR MODEL DECLARATION
+    model = tensorflow.keras.Sequential()
+
+    # DISCRIMINATOR MODEL DEFINITION
     # INPUT LAYER
-    discriminator_input = layers.Input(shape=(height, width, channels))
+    model.add(keras.Input(shape=(height, width, channels)))
 
     # HIDDEN LAYERS
-    x = layers.Conv2D(128, 3)(discriminator_input)
-    x = layers.LeakyReLU()(x)
+    model.add(layers.Conv2D(128, (3, 3), strides=(2, 2), padding='same'))
+    model.add(layers.LeakyReLU())
 
-    x = layers.Conv2D(64, 4, strides=(2, 2), padding='same')(x)
-    x = layers.LeakyReLU()(x)
+    model.add(layers.Conv2D(64, (4, 4), strides=(2, 2), padding='same'))
+    model.add(layers.LeakyReLU())
 
-    x = layers.Conv2D(32, 4, strides=(2, 2), padding='same')(x)
-    x = layers.LeakyReLU()(x)
+    model.add(layers.Conv2D(32, (4, 4), strides=(2, 2), padding='same'))
+    model.add(layers.LeakyReLU())
 
-    x = layers.Conv2D(16, 4, strides=(2, 2), padding='same')(x)
-    x = layers.LeakyReLU()(x)
+    model.add(layers.Conv2D(16, (5, 5), strides=(2, 2), padding='same'))
+    model.add(layers.LeakyReLU())
 
-    x = layers.Dropout(0.4)(x)
-    x = layers.Flatten()(x)
+    model.add(layers.Dropout(0.4))
+    model.add(layers.Flatten())
 
     # OUTPUT LAYER
-    x = layers.Dense(1, activation='sigmoid')(x)
-
-    # DISCRIMINATOR MODEL DECLARATION
-    discriminator = keras.models.Model(discriminator_input, x)
+    model.add(layers.Dense(1))
 
     # DISCRIMINATOR MODEL OPTIMIZATION
-    # In function discriminator_optimizer
+    # Optimization function is returning by function discriminator_optimizer. 
+    # We will add it later when we will be putting everything together to create GAN.
     
     # DISCRIMINATOR MODEL COMPILATION
-    # N/A
+    # We will compile all models at once
 
-    logger.info(discriminator.summary())
+    logger.debug(f"Discriminator network: \n {model.summary()}")
 
-    return discriminator
+    return model
 
 
 def discriminator_loss(real_output, fake_output):
+    """TODO add description"""
     cross_entropy = tensorflow.keras.losses.BinaryCrossentropy(from_logits=True)
 
     real_loss = cross_entropy(tensorflow.ones_like(real_output), real_output)
@@ -55,4 +64,5 @@ def discriminator_loss(real_output, fake_output):
     return total_loss
 
 def discriminator_optimizer():
+    """ TODO add description"""
     return tensorflow.keras.optimizers.Adam(1e-4)
