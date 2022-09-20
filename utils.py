@@ -4,6 +4,7 @@ import os
 import tensorflow
 from datetime import datetime
 from xmlrpc.client import Boolean
+from model.networks.generator import create_generator
 
 
 def get_json_data(file_path: str) -> dict:
@@ -23,13 +24,25 @@ def get_json_data(file_path: str) -> dict:
     return data
 
 
-def generate_images(model, test_input):
+def generate_images(model, seed, json_path: str="training_config.json"):
     """ TODO: add docstring"""
     # Notice `training` is set to False.
     # This is so all layers run in inference mode (batchnorm).
-    predictited_images = model(test_input, training=False)
+    seed = get_seed(json_path)
+    predictited_images = model(seed, training=False)
 
     return predictited_images
+
+
+def get_seed(json_path: str="training_config.json"):
+    model_data = get_json_data(json_path)
+
+    noise_dim = model_data["noise_dim"]
+    examples_to_generate = model_data["examples_to_generate"]
+    
+    seed = tensorflow.random.normal([examples_to_generate, noise_dim])
+
+    return seed
 
 
 def save_image(save_dir, name, images):
@@ -49,3 +62,19 @@ def is_it_wednesday() -> Boolean:
     logger.debug("Is it Wednesdat? : " + str(is_it_wednesday))
     
     return is_it_wednesday
+
+
+def load_model(json_path: str="training_config.json") -> tensorflow.Model:
+    """ TODO: Add docstring """
+    model_data = get_json_data(json_path)
+
+    noise_dim = model_data["noise_dim"]
+    height = model_data["height"]
+    width = model_data["width"]
+    channels = model_data["channels"]
+    generator = create_generator(noise_dim, height, width, channels)
+
+    checkpoint_dir = model_data["checkpoint_dir"]
+    generator.load_weights(checkpoint_dir)
+
+    return generator

@@ -23,7 +23,7 @@ def run_model_training():
     # TODO: make it nicer to eye
     training_data = get_json_data('training_config.json')
 
-    noise_dim = training_data["latent_dim"]
+    noise_dim = training_data["noise_dim"]
     height = training_data["height"]
     width = training_data["width"]
     channels = training_data["channels"]

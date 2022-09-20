@@ -1,5 +1,5 @@
 {
-    "latent_dim" : 32,
+    "noise_dim" : 32,
     "height" : 32,
     "width" : 32,
     "channels" : 3,
