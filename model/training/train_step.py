@@ -7,8 +7,8 @@ def train_step(
     images,
     generator,
     discriminator,
-    generator_loss,
-    discriminator_loss,
+    get_generator_loss,
+    get_discriminator_loss,
     generator_optimizer,
     discriminator_optimizer,
     batch_size,
@@ -25,8 +25,8 @@ def train_step(
         fake_output = discriminator(generated_images, training=True)
         logger.debug(f"Calculate outputs. \nREAL: {real_output} \nFAKE: {fake_output}")
 
-        gen_loss = generator_loss(fake_output)
-        disc_loss = discriminator_loss(real_output, fake_output)
+        gen_loss = get_generator_loss(fake_output)
+        disc_loss = get_discriminator_loss(real_output, fake_output)
         logger.debug(f"Calculate losses. \nGENERATOR: {gen_loss} \nDISCRIMINATOR: {disc_loss}")
 
     gradients_of_generator = generator_tape.gradient(gen_loss, generator.trainable_variables)

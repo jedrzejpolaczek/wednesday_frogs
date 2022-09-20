@@ -10,4 +10,8 @@ logger.add(sys.stderr, level="INFO")
 # send_email_on_wednesday()
 
 
+from model.run import run_model_training
+from email_frog.run import run_email_sender
 
+# run_model_training()
+run_email_sender()

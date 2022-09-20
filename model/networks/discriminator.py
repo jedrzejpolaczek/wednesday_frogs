@@ -53,7 +53,7 @@ def create_discriminator(height: int, width: int, channels: int):
     return model
 
 
-def discriminator_loss(real_output, fake_output):
+def get_discriminator_loss(real_output, fake_output):
     """TODO add description"""
     cross_entropy = tensorflow.keras.losses.BinaryCrossentropy(from_logits=True)
 
@@ -63,6 +63,6 @@ def discriminator_loss(real_output, fake_output):
 
     return total_loss
 
-def discriminator_optimizer():
+def get_discriminator_optimizer():
     """ TODO add description"""
     return tensorflow.keras.optimizers.Adam(1e-4)

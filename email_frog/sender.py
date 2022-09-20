@@ -1,22 +1,17 @@
-import os
-import numpy as np
-import tensorflow
 import smtplib
 
-from datetime import datetime
-from xmlrpc.client import Boolean
 from loguru import logger
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 
-from utils.configuration import get_json_data
+from utils import get_json_data
 
 
-def send_email() -> None:
+def send_email(json_dir: str="email_config.json") -> None:
     """ Send email with image. """
-    emails_data = get_json_data('email_config.json')
+    emails_data = get_json_data(json_dir)
     
     user_name = emails_data["user_name"]
     user_password = emails_data["user_password"]
@@ -81,66 +76,4 @@ def send_email() -> None:
         
     logger.info("Terminating the session.")
     smtp_session.quit()
-
-
-def is_it_wednesday() -> Boolean:
-    """ 
-    Check if it is Wednesday.
-    
-    return boolean: True if it is, false if not.
-    """
-    # If today is Wednesday (0 = Mon, 1 = Tue, 2 = Wen ...)
-    is_it_wednesday = datetime.today().weekday() == 2
-    logger.debug("Is it Wednesdat? : " + str(is_it_wednesday))
-    return is_it_wednesday
-
-
-def generate_images(gan: tensorflow.keras.models.Model) -> list:
-    """
-    Generating image.
-    
-    gan (tensorflow.keras.models.Model): GAN model.
-
-    return (list): list of generated images.
-    """
-    random_latent_vectors = np.random.normal(size=(20, 32))  # Fixme: magic number
-    generated_images = gan.predict(random_latent_vectors)
-
-    return generated_images
-
-
-def save_image(generated_images: list) -> None:
-    """ 
-    Save image on hard drive.
-    
-    generated_images (list): list of generated images.
-    """
-    img = tensorflow.keras.utils.array_to_img(generated_images[0] * 255., scale=False)  # Fixme: magic number
-    img.save(os.path.join("", 'generated_frog.png'))
-
-
-def send_email_on_wednesday(model_dir_path: str='gan_model\\gan.h5') -> None:
-    """ 
-    Send email with generated image on each Wednesday. 
-    
-    model_dir_path (str): path to saved GAN model.
-    """
-    if not is_it_wednesday():
-        logger.info("It is Wednesday!")
-        logger.info("Loading model.")
-        # I am keeping the loading of the model here due to potential model update reasons
-        gan = tensorflow.keras.models.load_model(model_dir_path)
-
-        logger.info("Generating new frog.")
-        frog_images = generate_images(gan)
-
-        logger.info("Saving frog image on hard drive.")
-        save_image(frog_images)
-
-        logger.info("Beginning procedure of sending emails.")
-        send_email()
-
-    else:
-        logger.info("It is not Wednesday.")
-        logger.info(" :( ")
         

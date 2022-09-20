@@ -50,7 +50,7 @@ def create_generator(noise_dim: int, height: int, width: int, channels: int):
     model.add(layers.BatchNormalization())
 
     # OUTPUT LAYER
-    model.add(layers.Conv2DTranspose(channels, 7, activation='tanh', padding='same'))  # TODO: Fixme: magic number
+    model.add(layers.Conv2DTranspose(channels, 7, activation='tanh', padding='same'))  # TODO: Fixme: 7 is amagic number
     assert model.output_shape == (None, height, width, channels)
 
     # GENERATOR MODEL OPTIMIZATION
@@ -64,7 +64,7 @@ def create_generator(noise_dim: int, height: int, width: int, channels: int):
 
     return model
 
-def generator_loss(fake_output):
+def get_generator_loss(fake_output):
     """
     TODO add description
     
@@ -74,6 +74,6 @@ def generator_loss(fake_output):
 
     return cross_entropy(tensorflow.ones_like(fake_output), fake_output)
 
-def generator_optimizer():
+def get_generator_optimizer():
     """TODO add description"""
     return tensorflow.keras.optimizers.Adam(1e-4)

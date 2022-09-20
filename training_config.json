@@ -3,8 +3,11 @@
     "height" : 32,
     "width" : 32,
     "channels" : 3,
-    "iterations" : 1000,
+    "iterations" : 10000,
     "batch_size" : 64,
-    "save_dir" : "gan_model_training\\gan_images",
-    "start" : 0
+    "save_dir" : "temp\\images_from_training",
+    "examples_to_generate" : 16,
+    "buffer_size" : 16,
+    "checkpoint_prefix" : "ckpt",
+    "checkpoint_dir" : "model\\model_checkpoints"
 }

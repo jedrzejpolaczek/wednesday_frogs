@@ -1,8 +1,9 @@
 from loguru import logger
 import time
 
-from gan.training.train_step import train_step
-from gan.utils.generate_and_save_images import generate_and_save_images
+# Local imports
+from model.training.train_step import train_step
+from utils import (generate_images, save_image)
 
 
 def train(
@@ -10,12 +11,13 @@ def train(
     epochs,
     generator,
     discriminator,
-    generator_loss,
-    discriminator_loss,
+    get_generator_loss,
+    get_discriminator_loss,
     generator_optimizer,
     discriminator_optimizer,
     checkpoint,
     checkpoint_prefix,
+    save_dir,
     seed,
     batch_size,
     noise_dim
@@ -24,13 +26,14 @@ def train(
     for epoch in range(epochs):
         start = time.time()
 
+        # Train model for each image in dataset
         for image_batch in dataset:
             train_step(
                 image_batch,
                 generator,
                 discriminator,
-                generator_loss,
-                discriminator_loss,
+                get_generator_loss,
+                get_discriminator_loss,
                 generator_optimizer,
                 discriminator_optimizer,
                 batch_size,
@@ -38,12 +41,15 @@ def train(
             )
 
         # Save the model every 10 epochs
-        if (epoch + 1) % 10 == 0:
-            checkpoint.save(file_prefix = checkpoint_prefix)
+        if (epoch + 1) % 100 == 0:
+            checkpoint.save(file_prefix=checkpoint_prefix)
+            
             # Produce images for each 10 epochs just for us
-            generate_and_save_images(generator, seed, checkpoint_prefix, f"frog_in_training_{epoch}")
+            images = generate_images(generator, seed)
+            save_image(save_dir, f"frog_in_training_{epoch}", images)
  
         logger.info(f"Time for epoch {epoch + 1} is {time.time()-start} sec. Total progress {int((epoch*100)/epochs)}%")
 
-    # Generate after the final epoch
-    generate_and_save_images(generator, seed, "", "WEDNESDAY_FROG")
+    # Generate image after the final epoch
+    images = generate_images(generator, seed)
+    save_image("", "WEDNESDAY_FROG", images)

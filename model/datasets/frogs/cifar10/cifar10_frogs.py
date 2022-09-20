@@ -2,6 +2,8 @@ import tensorflow
 
 def get_frogs(height, width, channels):
     """
+    TODO: add docstring
+
     Variables to be set in config JSON for this dataset:
     "latent_dim" : 32,
     "height" : 32,
