@@ -354,5 +354,6 @@ gan_model_training/gan_images/*
 frog-dataset/*
 frog-dataset
 email_config.json
-gan.h5
-test.py
+checkpoint*
+temp/*
+WEDNESDAY_FROG.pmg
