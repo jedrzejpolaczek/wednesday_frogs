@@ -2,10 +2,9 @@ import tensorflow
 from loguru import logger
 import sys
 
-from networks.generator import (create_generator, generator_loss, generator_optimizer)
-from networks.discriminator import (create_discriminator, discriminator_loss, discriminator_optimizer)
-from networks.gan import create_gan
-from networks.train_networks import train
+from gan.networks.generator import (create_generator, generator_loss, generator_optimizer)
+from gan.networks.discriminator import (create_discriminator, discriminator_loss, discriminator_optimizer)
+from gan.train import train
 from datasets.cifar10_frogs import get_frogs
 # TODO: fixme from utils.configuration import get_json_data
 
@@ -52,10 +51,6 @@ gen_optimizer = generator_optimizer()
 logger.info("DISCRIMINATOR DEFINITION")
 discriminator = create_discriminator(height, width, channels)
 disc_optimizer = discriminator_optimizer()
-
-logger.debug(f"Generator output shape: {generator.output_shape}")
-# my_val = discriminator.layers[0].get_output_at(0).get_shape().as_list()
-# logger.debug(f"Discriminator input shape: {my_val}")
 
 # logger.info("GAN DEFINITION")
 # gan = create_gan(discriminator, generator, noise_dim)
