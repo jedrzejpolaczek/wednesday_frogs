@@ -10,7 +10,11 @@ from utils import get_json_data
 
 
 def send_email(json_dir: str="email_config.json") -> None:
-    """ Send email with image. """
+    """ 
+    Send email with image. 
+    
+    TODO: add docstrings
+    """
     emails_data = get_json_data(json_dir)
     
     user_name = emails_data["user_name"]

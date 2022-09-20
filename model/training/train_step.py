@@ -2,6 +2,7 @@ import tensorflow
 from loguru import logger
 
 
+# TODO: add typing
 @tensorflow.function
 def train_step(
     images,
@@ -20,7 +21,7 @@ def train_step(
     with tensorflow.GradientTape() as generator_tape, tensorflow.GradientTape() as discriminator_tape:
         generated_images = generator(noise, training=True)
         logger.debug(f"Generated images: {generated_images}")
-
+        
         real_output = discriminator(images, training=True)
         fake_output = discriminator(generated_images, training=True)
         logger.debug(f"Calculate outputs. \nREAL: {real_output} \nFAKE: {fake_output}")

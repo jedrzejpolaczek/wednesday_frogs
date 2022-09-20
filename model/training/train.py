@@ -6,6 +6,7 @@ from model.training.train_step import train_step
 from utils import (generate_images, save_image)
 
 
+# TODO: add typing
 def train(
     dataset, 
     epochs,
@@ -27,6 +28,7 @@ def train(
         start = time.time()
 
         # Train model for each image in dataset
+        # TODO: make it nicer to eye
         for image_batch in dataset:
             train_step(
                 image_batch,

@@ -13,6 +13,8 @@ def send_email_on_wednesday(model_dir_path: str) -> None:
     """
     if is_it_wednesday():
         logger.info("It is Wednesday!")
+
+        # TODO: fix thing below in comment
         # logger.info("Loading model.")
         # # I am keeping the loading of the model here due to potential model update reasons
         # generator = tensorflow.keras.models.load_model(model_dir_path)

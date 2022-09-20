@@ -1,6 +1,6 @@
 import tensorflow
 
-def get_frogs(height, width, channels):
+def get_frogs(height: int, width: int, channels: int) -> tuple:
     """
     TODO: add docstring
 

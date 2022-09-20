@@ -64,9 +64,11 @@ def create_generator(noise_dim: int, height: int, width: int, channels: int):
 
     return model
 
+
+# TODO: add typing
 def get_generator_loss(fake_output):
     """
-    TODO add description
+    TODO: add docstring
     
     fake output (TODO add type): TODO add description
     """
@@ -74,6 +76,7 @@ def get_generator_loss(fake_output):
 
     return cross_entropy(tensorflow.ones_like(fake_output), fake_output)
 
+
 def get_generator_optimizer():
-    """TODO add description"""
+    """ TODO: add docstring """
     return tensorflow.keras.optimizers.Adam(1e-4)
