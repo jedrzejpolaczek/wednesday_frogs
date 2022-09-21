@@ -5,7 +5,8 @@ Warning: Basic idea for these model is inpired or based on implementation of:
 1. GAN presented in `Deep Learning with Python` by `Francois Chollet`.
 2. Tensorflow GAN example implementation.
 3. RealPython (https://realpython.com/how-to-make-a-discord-bot-python/)
-4. ... and a lot more.
+4. Machine Learning mastery (https://machinelearningmastery.com)
+5. ... and a lot more.
 
 # Main concept (WIP)
 1. Frog database is CIFAR10.
@@ -18,3 +19,9 @@ Simplified concept will looks like that:
 1. Generator tries to "predict" how an image should look in the same manner other neural networks try to predict the next word or if an image is a cat or dog. 
 2. On the other hand, the discriminator is trying to simply predict if a given image is the original image from the data set or generated one.
 3. Having a generator and discriminator we can put them together in one "loop training" network and in that way we get GAN!
+
+# Types of GANs 
+In catalogue `model` you can find diffrent implementation of GAN. For now you can find:
+DCGAN (catalogue `dcgan`) - Deep Convolutional Generative Adversarial Network, just GAN but network layers are mostly convolutional layers.
+PGGAN (catalogue `pggan`) - Progressive Growing Generative Adversarial Network is GAN that can take smaller image as input (during training) and predict much more bigger image.
+
