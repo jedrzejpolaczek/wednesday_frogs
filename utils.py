@@ -6,7 +6,7 @@ from datetime import datetime
 from xmlrpc.client import Boolean
 import argparse
 
-from model.networks.generator import create_generator
+from model.dcgan.networks.generator import create_generator
 
 
 def get_args() -> dict:
