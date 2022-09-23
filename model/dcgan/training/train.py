@@ -43,7 +43,7 @@ def train(
             )
 
         # Save the model every 10 epochs
-        if (epoch + 1) % 100 == 0:
+        if (epoch + 1) % 10 == 0:
             checkpoint.save(file_prefix=checkpoint_prefix)
             
             # Produce images for each 10 epochs just for us
