@@ -39,7 +39,7 @@ def create_discriminator(height: int, width: int, channels: int):
     model.add(layers.Flatten())
 
     # OUTPUT LAYER
-    model.add(layers.Dense(1))
+    model.add(layers.Dense(1, activation='sigmoid'))
 
     # DISCRIMINATOR MODEL OPTIMIZATION
     # Optimization function is returning by function discriminator_optimizer. 

@@ -4,7 +4,7 @@ Fun project for getting new, unique frog every Wednesday my dudes!
 Warning: Basic idea for these model is inpired or based on implementation of:
 1. GAN presented in `Deep Learning with Python` by `Francois Chollet`.
 2. Tensorflow GAN example implementation.
-3. RealPython (https://realpython.com/how-to-make-a-discord-bot-python/)
+3. RealPython (https://realpython.com/)
 4. Machine Learning mastery (https://machinelearningmastery.com)
 5. ... and a lot more.
 
