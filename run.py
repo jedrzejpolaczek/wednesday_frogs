@@ -1,7 +1,7 @@
 import sys
 from loguru import logger
 
-from model.run import run_model_training
+from model.dcgan.run import run_model_training
 from email_frog.run import run_email_sender
 from discord.run import run_bot
 from utils import get_args

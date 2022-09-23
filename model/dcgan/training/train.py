@@ -2,7 +2,7 @@ from loguru import logger
 import time
 
 # Local imports
-from model.training.train_step import train_step
+from model.dcgan.training.train_step import train_step
 from utils import (generate_images, save_image)
 
 

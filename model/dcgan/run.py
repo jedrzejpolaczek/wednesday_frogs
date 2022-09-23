@@ -3,9 +3,9 @@ import tensorflow
 from loguru import logger
 
 # Local imports
-from model.networks.generator import (create_generator, get_generator_loss, get_generator_optimizer)
-from model.networks.discriminator import (create_discriminator, get_discriminator_loss, get_discriminator_optimizer)
-from model.training.train import train
+from model.dcgan.networks.generator import (create_generator, get_generator_loss, get_generator_optimizer)
+from model.dcgan.networks.discriminator import (create_discriminator, get_discriminator_loss, get_discriminator_optimizer)
+from model.dcgan.training.train import train
 from model.datasets.frogs.cifar10.get_frogs_dataset import get_dataset
 from utils import get_json_data
 

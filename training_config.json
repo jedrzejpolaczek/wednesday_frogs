@@ -3,7 +3,7 @@
     "height" : 32,
     "width" : 32,
     "channels" : 3,
-    "iterations" : 10000,
+    "iterations" : 100,
     "batch_size" : 64,
     "save_dir" : "temp\\images_from_training",
     "examples_to_generate" : 16,
