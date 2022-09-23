@@ -60,12 +60,15 @@ def create_generator(noise_dim: int, height: int, width: int, channels: int):
     model.add(layers.Reshape((4, 4, 256)))
     # upsample to 8x8
     model.add(layers.Conv2DTranspose(128, (4,4), strides=(2,2), padding='same'))
+    model.add(layers.BatchNormalization())
     model.add(layers.LeakyReLU(alpha=0.2))
     # upsample to 16x16
     model.add(layers.Conv2DTranspose(128, (4,4), strides=(2,2), padding='same'))
+    model.add(layers.BatchNormalization())
     model.add(layers.LeakyReLU(alpha=0.2))
     # upsample to 32x32
     model.add(layers.Conv2DTranspose(128, (4,4), strides=(2,2), padding='same'))
+    model.add(layers.BatchNormalization())
     model.add(layers.LeakyReLU(alpha=0.2))
     # output layer
     model.add(layers.Conv2D(3, (3,3), activation='tanh', padding='same'))
