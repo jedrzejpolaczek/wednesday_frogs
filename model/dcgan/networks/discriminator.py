@@ -23,16 +23,16 @@ def create_discriminator(height: int, width: int, channels: int):
     model.add(keras.Input(shape=(height, width, channels)))
 
     # HIDDEN LAYERS
+    model.add(layers.Conv2D(64, (3, 3), strides=(2, 2), padding='same'))
+    model.add(layers.LeakyReLU())
+
     model.add(layers.Conv2D(128, (3, 3), strides=(2, 2), padding='same'))
     model.add(layers.LeakyReLU())
 
-    model.add(layers.Conv2D(64, (4, 4), strides=(2, 2), padding='same'))
+    model.add(layers.Conv2D(128, (3, 3), strides=(2, 2), padding='same'))
     model.add(layers.LeakyReLU())
 
-    model.add(layers.Conv2D(32, (4, 4), strides=(2, 2), padding='same'))
-    model.add(layers.LeakyReLU())
-
-    model.add(layers.Conv2D(16, (5, 5), strides=(2, 2), padding='same'))
+    model.add(layers.Conv2D(256, (3, 3), strides=(2, 2), padding='same'))
     model.add(layers.LeakyReLU())
 
     model.add(layers.Dropout(0.4))

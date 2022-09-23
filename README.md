@@ -23,5 +23,5 @@ Simplified concept will looks like that:
 # Types of GANs 
 In catalogue `model` you can find diffrent implementation of GAN. For now you can find:
 DCGAN (catalogue `dcgan`) - Deep Convolutional Generative Adversarial Network, just GAN but network layers are mostly convolutional layers.
-PGGAN (catalogue `pggan`) - Progressive Growing Generative Adversarial Network is GAN that can take smaller image as input (during training) and predict much more bigger image.
+(WIP) PGGAN (catalogue `pggan`) - Progressive Growing Generative Adversarial Network is GAN that can take smaller image as input (during training) and predict much more bigger image.
 
