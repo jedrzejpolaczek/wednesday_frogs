@@ -52,7 +52,7 @@ def run_bot():
             await channel.send(file=discord.File(image_name))
         
         else:
-            await channel.send("It's not Wednesday yet :(")
+            logger.info("It's not Wednesday yet :(")
 
     client.run(discord_token)
 

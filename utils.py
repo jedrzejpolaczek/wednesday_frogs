@@ -13,11 +13,11 @@ def get_args() -> dict:
     """ Get args from command line using argparse library. """
     parser = argparse.ArgumentParser(description='Process Wednesday frogs arguments.') 
 
-    parser.add_argument('--type_of_run', type=str, help='\You can choose type of run bewteen \
+    parser.add_argument('--run', type=str, help='\You can choose type of run bewteen \
         train for training the model, \
             email for generate and email frog image or \
                 discord for run discord bot.')
-    parser.add_argument('--logger_level', type=str, default="INFO", help='Level of logs to be displayed.')
+    parser.add_argument('--log_level', type=str, default="INFO", help='Level of logs to be displayed.')
 
     return parser.parse_args()
 

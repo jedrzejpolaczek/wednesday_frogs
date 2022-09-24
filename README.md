@@ -20,7 +20,7 @@ Simplified concept will looks like that:
 2. On the other hand, the discriminator is trying to simply predict if a given image is the original image from the data set or generated one.
 3. Having a generator and discriminator we can put them together in one "loop training" network and in that way we get GAN!
 
-# Types of GANs 
+# Types of GANs (WIP)
 In catalogue `model` you can find diffrent implementation of GAN. For now you can find:
 DCGAN (catalogue `dcgan`) - Deep Convolutional Generative Adversarial Network, just GAN but network layers are mostly convolutional layers.
 (WIP) PGGAN (catalogue `pggan`) - Progressive Growing Generative Adversarial Network is GAN that can take smaller image as input (during training) and predict much more bigger image.
