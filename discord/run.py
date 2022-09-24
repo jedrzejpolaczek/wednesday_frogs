@@ -44,10 +44,10 @@ def run_bot():
             logger.debug("Generate image.")
             images = generate_images(model, seed)
 
-            logger.debug("Save image")
+            logger.debug("Save image.")
             save_image(save_dir="", name=image_name, images=images)
 
-            logger.debug("Post frog")
+            logger.debug("Post generated frog.")
             await channel.send("It's Wednesday my dudes!")
             await channel.send(file=discord.File(image_name))
         
