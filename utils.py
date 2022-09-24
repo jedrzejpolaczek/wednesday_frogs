@@ -30,7 +30,7 @@ def get_json_data(file_path: str) -> dict:
     
     return dict: dict based on read JSON file.
     """
-    logger.debug("Opening JSON file.")
+    logger.debug(f"Opening JSON file: {file_path}")
     json_file = open(file_path)
     
     logger.debug("Loading JSON object as a dictionary.")
