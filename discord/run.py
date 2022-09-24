@@ -12,8 +12,8 @@ def run_bot():
     discord_config_data = get_json_data("discord_config.json")
 
     discord_token = discord_config_data["discord_token"]
-    guild_name = discord_config_data["guild_name"]  # DŹGAŃSKO
-    channel_name = discord_config_data["channel_name"]  # sroda
+    guild_name = discord_config_data["guild_name"]
+    channel_name = discord_config_data["channel_name"]
     image_name = discord_config_data["image_name"]
 
     client = discord.Client()
@@ -32,7 +32,7 @@ def run_bot():
         wednesday_check.start(channel, image_name)
 
 
-    @tasks.loop(hours=2)
+    @tasks.loop(hours=24)
     async def wednesday_check(channel, image_name):
         if is_it_wednesday():
             logger.debug("Loading model.")
