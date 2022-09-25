@@ -66,7 +66,7 @@ def get_seed(json_path: str="training_config.json"):
 def save_image(save_dir: str, name: str, images):
     """ TODO: add docstring"""
     img = tensorflow.keras.utils.array_to_img(images[0] * 255., scale=False)
-    img.save(os.path.join(save_dir, f'{name}.png'))
+    img.save(os.path.join(save_dir, f'{name}'))
 
 
 def is_it_wednesday() -> Boolean:
