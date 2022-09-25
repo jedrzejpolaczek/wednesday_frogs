@@ -16,9 +16,8 @@ def train(
     get_discriminator_loss,
     generator_optimizer,
     discriminator_optimizer,
-    checkpoint,
-    checkpoint_prefix,
-    save_dir,
+    model_save_dir,
+    images_save_dir,
     seed,
     batch_size,
     noise_dim
@@ -44,11 +43,11 @@ def train(
 
         # Save the model every 10 epochs
         if (epoch + 1) % 10 == 0:
-            checkpoint.save(file_prefix=checkpoint_prefix)
+            generator.save(f"{model_save_dir}.h5")
             
             # Produce images for each 10 epochs just for us
             images = generate_images(generator, seed)
-            save_image(save_dir, f"frog_in_training_{epoch}", images)
+            save_image(images_save_dir, f"frog_in_training_{epoch}", images)
  
         logger.info(f"Time for epoch {epoch + 1} is {time.time()-start} sec. Total progress {int((epoch*100)/epochs)}%")
 

@@ -34,7 +34,7 @@ def run_bot():
 
     @tasks.loop(hours=24)
     async def wednesday_check(channel, image_name):
-        if is_it_wednesday():
+        if not is_it_wednesday():
             logger.debug("Loading model.")
             model = load_model()
 

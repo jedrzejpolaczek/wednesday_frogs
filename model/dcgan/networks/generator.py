@@ -21,16 +21,16 @@ def create_generator(noise_dim: int, height: int, width: int, channels: int):
     width (int): TODO add description
     channels (int): TODO add description
     """
-    # GENERATOR MODEL DECLARATION
+    logger.debug("Generator model declaration.")
     model = tensorflow.keras.Sequential()
 
-    # GENERATOR MODEL DEFINITION
-    # INPUT LAYER
+    logger.debug("Generator model definition.")
+    logger.debug("Adding generator input layer.")
     # foundation for 4x4 image
     n_nodes = 256 * 4 * 4
     model.add(layers.Dense(n_nodes, input_dim=noise_dim))
     
-    # HIDDEN LAYERS
+    logger.debug("Adding generator hidden layers.")
     model.add(layers.LeakyReLU(alpha=0.2))
     model.add(layers.Reshape((4, 4, 256)))
     # upsample to 8x8
@@ -46,7 +46,7 @@ def create_generator(noise_dim: int, height: int, width: int, channels: int):
     model.add(layers.BatchNormalization())
     model.add(layers.LeakyReLU(alpha=0.2))
     
-    # OUTPUT LAYER
+    logger.debug("Adding generator output layer.")
     model.add(layers.Conv2D(3, (3,3), activation='tanh', padding='same'))
 
     # GENERATOR MODEL OPTIMIZATION

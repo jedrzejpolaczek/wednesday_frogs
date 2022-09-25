@@ -31,9 +31,8 @@ def run_model_training():
     epochs = training_data["iterations"]
     buffer_size = training_data["buffer_size"]
     batch_size = training_data["batch_size"]
-    save_dir = training_data["save_dir"]
-    checkpoint_dir = training_data["checkpoint_dir"]
-    checkpoint_prefix = os.path.join(checkpoint_dir, training_data["checkpoint_prefix"])
+    images_save_dir = training_data["images_save_dir"]
+    model_save_dir = training_data["model_save_dir"]
     examples_to_generate = training_data["examples_to_generate"]
     seed=tensorflow.random.normal([examples_to_generate, noise_dim])
 
@@ -72,9 +71,8 @@ def run_model_training():
         get_discriminator_loss,
         gen_optimizer,
         disc_optimizer,
-        checkpoint,
-        checkpoint_prefix,
-        save_dir,
+        model_save_dir,
+        images_save_dir,
         seed,
         batch_size,
         noise_dim

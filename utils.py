@@ -87,13 +87,8 @@ def load_model(json_path: str="training_config.json"):
     """ TODO: Add docstring """
     model_data = get_json_data(json_path)
 
-    noise_dim = model_data["noise_dim"]
-    height = model_data["height"]
-    width = model_data["width"]
-    channels = model_data["channels"]
-    generator = create_generator(noise_dim, height, width, channels)
-
-    checkpoint_dir = model_data["checkpoint_dir"]
-    generator.load_weights(checkpoint_dir)
+    logger.debug("Load model.")
+    model_save_dir = model_data["model_save_dir"]
+    generator = tensorflow.keras.models.load_model(f"{model_save_dir}.h5")
 
     return generator
