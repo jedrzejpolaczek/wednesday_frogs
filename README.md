@@ -1,7 +1,7 @@
 # It's Wednesday my dudes!
 Fun project for getting new, unique frog every Wednesday my dudes!
 
-Warning: Basic idea for these model is inpired or based on implementation of:
+Warning: Basic idea for these model is inspired or based on implementation of:
 1. GAN presented in `Deep Learning with Python` by `Francois Chollet`.
 2. Tensorflow GAN example implementation.
 * https://www.tensorflow.org/hub/tutorials/bigbigan_with_tf_hub
