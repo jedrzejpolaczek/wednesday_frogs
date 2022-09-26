@@ -38,7 +38,7 @@ def run_model_training():
 
     # -----------------------
     logger.info("GENERATOR DEFINITION")
-    generator = create_generator(noise_dim, height, width, channels)
+    generator = create_generator(noise_dim)
     gen_optimizer = get_generator_optimizer()
 
     logger.info("DISCRIMINATOR DEFINITION")

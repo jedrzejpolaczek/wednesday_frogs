@@ -4,9 +4,14 @@ Fun project for getting new, unique frog every Wednesday my dudes!
 Warning: Basic idea for these model is inpired or based on implementation of:
 1. GAN presented in `Deep Learning with Python` by `Francois Chollet`.
 2. Tensorflow GAN example implementation.
+* https://www.tensorflow.org/hub/tutorials/bigbigan_with_tf_hub
 3. RealPython (https://realpython.com/how-to-make-a-discord-bot-python/)
-4. Machine Learning mastery (https://machinelearningmastery.com)
-5. ... and a lot more.
+4. Machine Learning mastery (https://machinelearningmastery.com):
+* https://machinelearningmastery.com/how-to-develop-a-generative-adversarial-network-for-a-cifar-10-small-object-photographs-from-scratch/?fbclid=IwAR0gqQEwPCUujK98NmE6-wBBPIVp5vFaouG3q0KiOVJKSojWtoHoFKeaN54
+* https://machinelearningmastery.com/how-to-implement-progressive-growing-gan-models-in-keras/
+5. Hacks and tips about GAN (https://github.com/soumith/ganhacks)
+6. Stack Overflow (https://stackoverflow.com/questions/44747343/keras-input-explanation-input-shape-units-batch-size-dim-etc)
+7. ... and a lot more.
 
 # Main concept
 1. Frog database is CIFAR10.

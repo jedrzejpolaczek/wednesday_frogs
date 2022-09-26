@@ -7,7 +7,7 @@ import tensorflow
 # --- GENERATOR ---
 # -----------------
 
-def create_generator(noise_dim: int, height: int, width: int, channels: int):
+def create_generator(noise_dim: int):
     """
     The generator uses tf.keras.layers.Conv2DTranspose (upsampling) layers to produce an image from a seed (random noise). 
     Start with a Dense layer that takes this seed as input, 
@@ -16,10 +16,9 @@ def create_generator(noise_dim: int, height: int, width: int, channels: int):
 
     Note: description from tensorflow GAN example.
 
-    noise_dim (int): your input shape has only one dimension, you don't need to give it as a tuple, you give input_dim as a scalar number.
-    height (int): TODO add description
-    width (int): TODO add description
-    channels (int): TODO add description
+
+    noise_dim (int): your input shape has only one dimension, you don't need to give it as a tuple, 
+    you give input_dim as a scalar number.
     """
     logger.debug("Generator model declaration.")
     model = tensorflow.keras.Sequential()
