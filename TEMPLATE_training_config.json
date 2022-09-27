@@ -1,0 +1,12 @@
+{
+    "noise_dim" : 32,
+    "height" : 32,
+    "width" : 32,
+    "channels" : 3,
+    "iterations" : 1000,
+    "batch_size" : 64,
+    "images_save_dir" : "temp\\images_from_training",
+    "examples_to_generate" : 16,
+    "buffer_size" : 16,
+    "model_save_dir" : "model\\dcgan\\trained_models\\gan_model"
+}

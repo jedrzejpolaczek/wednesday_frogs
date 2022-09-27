@@ -1,0 +1,14 @@
+{
+    "user_name" : "USER@EMAIL.COM", 
+    "user_password" : "STRONG PASSWORD", 
+    "sender" : "SENDER@EMAIL.COM", 
+    "riecievers" : [
+        "RIECIEVER_1@EMAIL.COM",
+        "RIECIEVER_2@EMAIL.COM"
+    ], 
+    "img_file_name" : "WEDNESDAY_FROG.png",
+    "img_file_name_path" : "WEDNESDAY_FROG.png",
+    "subject" : "It's Wednesday my dude!",
+    "body" : "It is Wednesday, my dude! Here's your complementatory frog from a depth of AI mind.",
+    "image_name" : "WEDNESDAY_FROG.png"
+}
