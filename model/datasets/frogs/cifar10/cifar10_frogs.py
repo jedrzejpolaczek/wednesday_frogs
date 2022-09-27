@@ -1,14 +1,13 @@
 import tensorflow
 
+
 def get_frogs(height: int, width: int, channels: int) -> tuple:
     """
-    TODO: add docstring
+    Download cifar10 dataset, extraxt only frogs from there and reshape them to get images as numpy.ndarray of (5000, 32, 32, 3).
 
-    Variables to be set in config JSON for this dataset:
-    "latent_dim" : 32,
-    "height" : 32,
-    "width" : 32,
-    "channels" : 3,
+    height (int): value represented hight of image measured in pixels.
+    width (int): value represented width of image measured in pixels.
+    channels (int): number of possible colorues in image.
 
     return (numpy.ndarray): array of size (5000, 32, 32, 3) as 5000 images of size 32x32 pixels with 3 colours.
     """

@@ -18,7 +18,7 @@ Warning: Basic idea for these model is inspired or based on implementation of:
 2. Create and train generative adversarial networks (GAN) for generating frog images.
 3. Script for generating and sending emails with frog image each Wednesday.
 4. Run discord bot that will run script for generating and post frog image each Wednesday.
-5. Everything is nicely documented (WIP)
+5. Everything is nicely documented.
 
 # How it works?
 Simplified concept will looks like that:

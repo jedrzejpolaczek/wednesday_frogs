@@ -7,8 +7,6 @@ import argparse
 import tensorflow
 from loguru import logger
 
-from model.dcgan.networks.generator import create_generator
-
 
 def get_args() -> list:
     """ 
@@ -95,7 +93,7 @@ def save_image(save_dir: str, name: str, images: tensorflow.Tensor):
     First image have the highest probability to be correct.
     """
     img = tensorflow.keras.utils.array_to_img(images[0] * 255., scale=False)
-    img.save(os.path.join(save_dir, f'{name}'))
+    img.save(os.path.join(save_dir, f'{name}.png'))
 
 
 def is_it_wednesday() -> Boolean:

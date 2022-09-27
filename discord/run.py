@@ -1,5 +1,3 @@
-import os
-import datetime
 import discord
 from discord.ext import tasks
 from loguru import logger
