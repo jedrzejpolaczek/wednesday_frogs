@@ -2,11 +2,12 @@ import discord
 from discord.ext import tasks
 from loguru import logger
 
+# Local imports
 from utils import (get_json_data, is_it_wednesday, load_model, get_seed, generate_images, save_image)
 
 
 def run_bot():
-    """ TODO: add docstrings """
+    """ Run discord bot that post generated image of frog each Wednesday. """
     discord_config_data = get_json_data("discord_config.json")
 
     discord_token = discord_config_data["discord_token"]
