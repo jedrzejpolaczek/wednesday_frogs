@@ -6,6 +6,7 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 
+# Local imports
 from utils import get_json_data
 
 
@@ -13,7 +14,7 @@ def send_email(json_dir: str="email_config.json") -> None:
     """ 
     Send email with image. 
     
-    TODO: add docstrings
+    json_dir (str): path to JSON file with configuration.
     """
     emails_data = get_json_data(json_dir)
     
