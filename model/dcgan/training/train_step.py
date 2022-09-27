@@ -26,7 +26,6 @@ def train_step(
         fake_output = discriminator(generated_images, training=True)
         logger.debug(f"Calculate outputs. \nREAL: {real_output} \nFAKE: {fake_output}")
 
-        logger.warning(type(fake_output))
         gen_loss = get_generator_loss(fake_output)
         disc_loss = get_discriminator_loss(real_output, fake_output)
         logger.debug(f"Calculate losses. \nGENERATOR: {gen_loss} \nDISCRIMINATOR: {disc_loss}")
